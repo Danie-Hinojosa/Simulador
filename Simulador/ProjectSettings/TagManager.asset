@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Colectables
+  - Maiz
+  - Puntuaje
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Puntuaje
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Water
+    uniqueID: 459459659
+    locked: 0
+  - name: Ground
+    uniqueID: 1539606031
+    locked: 0
+  - name: Vegetation
+    uniqueID: 889610589
+    locked: 0
+  - name: Character
+    uniqueID: 2288058931
+    locked: 0
+  - name: UI
+    uniqueID: 4117104793
+    locked: 0
+  - name: Puntuaje
+    uniqueID: 1935045533
+    locked: 0

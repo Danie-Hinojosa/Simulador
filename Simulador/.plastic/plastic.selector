@@ -1,0 +1,4 @@
+repository "Simulador@elmanosguangas@cloud"
+  path "/"
+    br "/main"
+    co "/main"
