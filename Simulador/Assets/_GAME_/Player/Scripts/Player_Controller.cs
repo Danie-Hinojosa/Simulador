@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 
 [SelectionBase]
@@ -12,31 +13,30 @@ public class Player_Controller : MonoBehaviour
     public enum Gear { NEUTRAL, FORWARD, REVERSE, BRAKE }
     #endregion
 
-
     #region Editor Data
     [Header("Movement Attributes")]
-    [SerializeField] float _maxSpeed = 50f;        // Velocidad máxima hacia adelante
-    [SerializeField] float _reverseSpeed = 25f;    // Velocidad máxima en reversa
-    [SerializeField] float _accelerationRate = 5f; // Tasa de aceleración progresiva
-    [SerializeField] float _brakeForce = 10f;      // Fuerza de frenado
+    public float _maxSpeed = 50f;        // Velocidad máxima hacia adelante
+    public float _reverseSpeed = 25f;    // Velocidad máxima en reversa
+    public float _accelerationRate = 5f; // Tasa de aceleración progresiva
+    public float _brakeForce = 10f;      // Fuerza de frenado
 
     [Header("Dependencies")]
-    [SerializeField] Rigidbody2D _rb;
-    [SerializeField] Animator _animator;
-    [SerializeField] SpriteRenderer _spriteRenderer;
+    public Rigidbody2D _rb;
+    [SerializeField] public Animator _animator;
+    [SerializeField] public SpriteRenderer _spriteRenderer;
     [SerializeField] private Text maizText;    // Texto para la cantidad de maíz recolectado
     [SerializeField] private Text speedText;   // Texto para la velocidad del tractor
     [SerializeField] private Text gearText;    // Texto para el estado de la marcha
     #endregion
 
     #region Internal Data
-    private Vector2 _moveDir = Vector2.zero;
+    public Vector2 _moveDir = Vector2.zero;
     private Directions _facingDirections = Directions.RIGHT;
     
-    private Gear _currentGear = Gear.NEUTRAL; // Gear inicial
+    public Gear _currentGear = Gear.NEUTRAL; // Gear inicial
     private Gear _previousGear = Gear.NEUTRAL; // Para almacenar la marcha anterior
 
-    private float _currentSpeed = 0f;         // Velocidad actual del tractor
+    public float _currentSpeed = 0f;         // Velocidad actual del tractor
     private float _targetSpeed = 0f;          // Velocidad objetivo que se irá alcanzando progresivamente
     private readonly int _animMoveRight = Animator.StringToHash("Anim_Player_Move_Right");
     private readonly int _animIdleRight = Animator.StringToHash("Anim_Player_Idle_Right");
@@ -46,14 +46,12 @@ public class Player_Controller : MonoBehaviour
     private readonly int _animIdleDown = Animator.StringToHash("Anim_Player_Idle_Down"); // Nueva animación idle para Down
     private int _collectedMaizeCount = 0;     // Contador de maíz recolectado
     [SerializeField] Text collectedCountText; // Referencia al texto de la UI para mostrar la cantidad recolectada
-
     #endregion
 
     // Propiedades públicas para permitir que el UIManager acceda a la información
     public int CollectedMaizeCount => _collectedMaizeCount; // Proporciona acceso a la cantidad de maíz recolectado
     public float CurrentSpeed => _currentSpeed;             // Proporciona acceso a la velocidad actual
-    public Gear CurrentGear => _currentGear;                // Proporciona acceso al estado de la marcha
-
+    public Gear CurrentGear { get { return _currentGear; } set { _currentGear = value; } } // Proporciona acceso al estado de la marcha
 
     #region Tick
 
