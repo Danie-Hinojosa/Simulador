@@ -56,6 +56,9 @@ public class UARTController : MonoBehaviour
 
         // Actualizamos el movimiento del tractor en función de los datos recibidos
         UpdateMovement();
+
+        // Enviar la cantidad de maíz recolectado a la FPGA
+        SendMaizeCollected();
     }
 
     private void ProcessReceivedData(int receivedData)
@@ -120,4 +123,23 @@ public class UARTController : MonoBehaviour
             playerController._rb.velocity = Vector2.zero;
         }
     }
+
+    // Enviar la cantidad de maíz recolectado a la FPGA
+    private void SendMaizeCollected()
+    {
+        if (serialPort.IsOpen)
+        {
+            try
+            {
+                // Convierte la cantidad de maíz en un solo byte y lo envía
+                byte maizeCountByte = (byte)playerController.CollectedMaizeCount; // Asegúrate de que el valor no exceda 255
+                serialPort.Write(new byte[] { maizeCountByte }, 0, 1); // Enviar un solo byte al FPGA
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning("Error al enviar datos: " + e.Message);
+            }
+        }
+    }
+
 }
