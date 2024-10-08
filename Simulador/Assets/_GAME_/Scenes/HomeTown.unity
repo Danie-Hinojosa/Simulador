@@ -29704,6 +29704,7 @@ GameObject:
   - component: {fileID: 97714134}
   - component: {fileID: 97714132}
   - component: {fileID: 97714135}
+  - component: {fileID: 97714136}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -29733,6 +29734,9 @@ MonoBehaviour:
   maizText: {fileID: 0}
   speedText: {fileID: 0}
   gearText: {fileID: 0}
+  _moveDir: {x: 0, y: 0}
+  _currentGear: 0
+  _currentSpeed: 0
   collectedCountText: {fileID: 0}
 --- !u!4 &97714133
 Transform:
@@ -29823,6 +29827,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7973495, y: 0.50087917}
   m_EdgeRadius: 0
+--- !u!114 &97714136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97714131}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645bd5a3e3a3b8749bb9f1146262e1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSpeed: 200
+  _reverseSpeed: 100
+  _accelerationRate: 15
+  _brakeForce: 20
+  _rb: {fileID: 0}
+  _animator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  maizText: {fileID: 0}
+  speedText: {fileID: 0}
+  gearText: {fileID: 0}
+  collectedCountText: {fileID: 0}
 --- !u!1 &97985045
 GameObject:
   m_ObjectHideFlags: 0
@@ -43326,7 +43353,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 59
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -44211,8 +44238,8 @@ Tilemap:
     m_Data: {fileID: -116552313, guid: bce5ef28c665239418db81c4d3708b00, type: 3}
   - m_RefCount: 11
     m_Data: {fileID: -338408924, guid: bce5ef28c665239418db81c4d3708b00, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1302037461, guid: bce5ef28c665239418db81c4d3708b00, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 6
     m_Data: {fileID: 1949255571, guid: bce5ef28c665239418db81c4d3708b00, type: 3}
   - m_RefCount: 22
@@ -44227,8 +44254,8 @@ Tilemap:
     m_Data: {fileID: -440149671, guid: bce5ef28c665239418db81c4d3708b00, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1182630238, guid: bce5ef28c665239418db81c4d3708b00, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1302037461, guid: bce5ef28c665239418db81c4d3708b00, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1359252751, guid: bce5ef28c665239418db81c4d3708b00, type: 3}
   - m_RefCount: 1
