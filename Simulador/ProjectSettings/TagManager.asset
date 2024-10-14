@@ -53,6 +53,9 @@ TagManager:
   - name: Vegetation
     uniqueID: 889610589
     locked: 0
+  - name: Grass
+    uniqueID: 3148529501
+    locked: 0
   - name: Character
     uniqueID: 2288058931
     locked: 0
