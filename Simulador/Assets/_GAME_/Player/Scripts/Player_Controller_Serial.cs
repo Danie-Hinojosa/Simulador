@@ -9,7 +9,7 @@ using System; // Para manejar excepciones
 public class Player_Controller_Serial : MonoBehaviour
 {
     private float _serialReadTimer = 0f; // Temporizador para leer del puerto serial
-    private float _serialReadInterval = 1f; // Intervalo de lectura en segundos
+    private float _serialReadInterval = 0f; // Intervalo de lectura en segundos
     #region Enums
     private enum Directions { UP, DOWN, LEFT, RIGHT }
     public enum Gear { NEUTRAL, FORWARD, REVERSE, BRAKE }
@@ -72,37 +72,34 @@ public class Player_Controller_Serial : MonoBehaviour
     }
 
     private void Update()
+{
+    _serialReadTimer += Time.deltaTime;
+
+    // Intenta leer del puerto serial lo más frecuentemente posible (cada frame)
+    if (serialPort.IsOpen)
     {
-        if (!serialPort.IsOpen)
+        try
         {
-            serialPort.Open(); // Reabrir conexión si está cerrada
-            serialPort.ReadTimeout = 1;
-        }
-
-        if (serialPort.IsOpen)
-        {
-            try
+            int receivedData;
+            while (serialPort.BytesToRead > 0)
             {
-                int receivedData;
-                if (serialPort.BytesToRead > 0)
-                {
-                    receivedData = serialPort.ReadByte(); // Leer el dato recibido de la FPGA
-                    Debug.Log("Dato recibido: " + receivedData);
-                    ProcessReceivedData(receivedData); // Procesar el dato recibido
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning("Error al leer desde el puerto serial: " + e.Message);
+                receivedData = serialPort.ReadByte(); // Leer el dato recibido de la FPGA
+                Debug.Log("Dato recibido: " + receivedData);
+                ProcessReceivedData(receivedData); // Procesar el dato recibido
             }
         }
-
-        // Enviar la cantidad de maíz recolectado a la FPGA
-        SendMaizeCollected();
-        // Actualiza la UI
-        UpdateUI();
-        UpdateAnimation();
+        catch (Exception e)
+        {
+            Debug.LogWarning("Error al leer desde el puerto serial: " + e.Message);
+        }
     }
+
+    // Enviar la cantidad de maíz recolectado a la FPGA
+    SendMaizeCollected();
+    // Actualiza la UI
+    UpdateUI();
+    UpdateAnimation();
+}
 
     private void FixedUpdate() 
     {
