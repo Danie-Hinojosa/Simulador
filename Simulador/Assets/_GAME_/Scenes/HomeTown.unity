@@ -60737,7 +60737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer_fr_image: {fileID: 1459393951}
-  max_time: 60
+  max_time: 70
   gameOverManager: {fileID: 1188663538}
 --- !u!114 &1520257666
 MonoBehaviour:

@@ -7,7 +7,12 @@ public class MainStartMenu : MonoBehaviour // Renombrado de StartMenu a MainStar
 {
     public void Jugar()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("HomeTown");
+    }
+
+    public void Instrucciones()
+    {
+        SceneManager.LoadScene("OptionsInst");
     }
 
     public void Salir()
