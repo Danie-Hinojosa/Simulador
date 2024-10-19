@@ -11,16 +11,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private TextMeshProUGUI gearText;
 
-
-    // Referencia al controlador del jugador
+    // Referencias a los controladores del jugador
+    [SerializeField] private Player_Controller playerController;
     [SerializeField] private Player_Controller_Serial playerControllerSerial;
 
     private void Start()
     {
-        // Comprueba que las referencias estén asignadas
-        if (playerControllerSerial == null)
+        // Comprueba que al menos una referencia esté asignada
+        if (playerController == null && playerControllerSerial == null)
         {
-            Debug.LogError("Player_Controller_Serial no está asignado en el UIManager.");
+            Debug.LogError("Ningún controlador del jugador está asignado en el UIManager.");
         }
 
         if (maizText == null || speedText == null || gearText == null)
@@ -31,32 +31,46 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (playerControllerSerial != null)
+        // Verifica cuál controlador está activo y actualiza la UI
+        if (playerController != null && playerController.isActiveAndEnabled)
         {
-            UpdateUI(); // Actualiza la información de la UI
+            UpdateUI(playerController); // Actualiza la UI usando Player_Controller
+        }
+        else if (playerControllerSerial != null && playerControllerSerial.isActiveAndEnabled)
+        {
+            UpdateUI(playerControllerSerial); // Actualiza la UI usando Player_Controller_Serial
         }
     }
 
-    // Actualiza los textos de la UI
-    private void UpdateUI()
+    // Método genérico para actualizar los textos de la UI
+    private void UpdateUI(dynamic controller)
     {
         // Actualiza la cantidad de maíz recolectado
         if (maizText != null)
         {
-            maizText.text = "" + playerControllerSerial.CollectedMaizeCount;
+            maizText.text = "" + controller.CollectedMaizeCount;
         }
 
         // Actualiza la velocidad del tractor
         if (speedText != null)
         {
-            speedText.text = "" + Mathf.Round(playerControllerSerial.CurrentSpeed); // Redondear para mostrar un valor más limpio
+            speedText.text = "" + Mathf.Round(controller.CurrentSpeed); // Redondear para mostrar un valor más limpio
         }
 
         // Actualiza el estado de la marcha
         if (gearText != null)
         {
-            switch (playerControllerSerial.CurrentGear)
+            switch (controller.CurrentGear)
             {
+                case Player_Controller.Gear.FORWARD:
+                    gearText.text = "Drive";
+                    break;
+                case Player_Controller.Gear.REVERSE:
+                    gearText.text = "Reverse";
+                    break;
+                case Player_Controller.Gear.NEUTRAL:
+                    gearText.text = "Neutral";
+                    break;
                 case Player_Controller_Serial.Gear.FORWARD:
                     gearText.text = "Drive";
                     break;

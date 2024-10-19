@@ -26474,6 +26474,7 @@ MonoBehaviour:
   maizText: {fileID: 90599049}
   speedText: {fileID: 618039589}
   gearText: {fileID: 841496602}
+  playerController: {fileID: 97714132}
   playerControllerSerial: {fileID: 97714136}
 --- !u!114 &90599049
 MonoBehaviour:
@@ -46202,6 +46203,7 @@ MonoBehaviour:
   maizText: {fileID: 90599049}
   speedText: {fileID: 618039589}
   gearText: {fileID: 841496602}
+  playerController: {fileID: 97714132}
   playerControllerSerial: {fileID: 97714136}
 --- !u!114 &618039589
 MonoBehaviour:
@@ -49828,6 +49830,7 @@ MonoBehaviour:
   maizText: {fileID: 90599049}
   speedText: {fileID: 618039589}
   gearText: {fileID: 841496602}
+  playerController: {fileID: 97714132}
   playerControllerSerial: {fileID: 97714136}
 --- !u!114 &841496602
 MonoBehaviour:
