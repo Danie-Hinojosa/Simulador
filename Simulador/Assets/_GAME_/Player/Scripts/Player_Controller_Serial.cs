@@ -48,7 +48,7 @@ public class Player_Controller_Serial : MonoBehaviour
     [SerializeField] Text collectedCountText;   // Referencia al texto de la UI para mostrar la cantidad recolectada
 
     // UART interface
-    public SerialPort serialPort = new SerialPort("COM3", 115200); // Ajusta el puerto COM según tu configuración
+    public SerialPort serialPort = new SerialPort("COM7", 115200); // Ajusta el puerto COM según tu configuración
     
     
     
@@ -258,41 +258,41 @@ private void ProcessReceivedData(int receivedData)
     }
 
     private void UpdateAnimation()
-{
-    // Verifica si hay movimiento
-    if (_moveDir.SqrMagnitude() == 0)
     {
-        // Si no hay movimiento, activa la animación idle correspondiente
-        switch (_facingDirections)
+        // Verifica si hay movimiento
+        if (_moveDir.SqrMagnitude() == 0)
         {
-            case Directions.LEFT:
-                _animator.CrossFade(_animIdleRight, 0); // Usamos la misma animación idle para ambos lados
-                break;
+            // Si no hay movimiento, activa la animación idle correspondiente
+            switch (_facingDirections)
+            {
+                case Directions.LEFT:
+                    _animator.CrossFade(_animIdleRight, 0); // Usamos la misma animación idle para ambos lados
+                    break;
 
-            case Directions.RIGHT:
-                _animator.CrossFade(_animIdleRight, 0);
-                break;
-            // No hacemos nada para UP y DOWN
+                case Directions.RIGHT:
+                    _animator.CrossFade(_animIdleRight, 0);
+                    break;
+                // No hacemos nada para UP y DOWN
+            }
+        }
+        else
+        {
+            // Si hay movimiento, activa la animación de movimiento solo en la dirección actual
+            switch (_facingDirections)
+            {
+                case Directions.LEFT:
+                    _spriteRenderer.flipX = true; // Activar flip solo para el lado izquierdo
+                    _animator.CrossFade(_animMoveRight, 0); // Animación de movimiento hacia la izquierda
+                    break;
+
+                case Directions.RIGHT:
+                    _spriteRenderer.flipX = false; // Desactivar flip para el lado derecho
+                    _animator.CrossFade(_animMoveRight, 0); // Animación de movimiento hacia la derecha
+                    break;
+                // No hacemos nada para UP y DOWN
+            }
         }
     }
-    else
-    {
-        // Si hay movimiento, activa la animación de movimiento solo en la dirección actual
-        switch (_facingDirections)
-        {
-            case Directions.LEFT:
-                _spriteRenderer.flipX = true; // Activar flip solo para el lado izquierdo
-                _animator.CrossFade(_animMoveRight, 0); // Animación de movimiento hacia la izquierda
-                break;
-
-            case Directions.RIGHT:
-                _spriteRenderer.flipX = false; // Desactivar flip para el lado derecho
-                _animator.CrossFade(_animMoveRight, 0); // Animación de movimiento hacia la derecha
-                break;
-            // No hacemos nada para UP y DOWN
-        }
-    }
-}
     #endregion
 
     #region UI Logic
