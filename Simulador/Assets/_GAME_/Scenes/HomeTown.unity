@@ -26474,7 +26474,7 @@ MonoBehaviour:
   maizText: {fileID: 90599049}
   speedText: {fileID: 618039589}
   gearText: {fileID: 841496602}
-  playerController: {fileID: 97714132}
+  playerControllerSerial: {fileID: 97714136}
 --- !u!114 &90599049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26599,7 +26599,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97714131}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5f9f87e7f980ac4880a1130db6c6a4c, type: 3}
   m_Name: 
@@ -26714,7 +26714,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97714131}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645bd5a3e3a3b8749bb9f1146262e1ab, type: 3}
   m_Name: 
@@ -46205,7 +46205,7 @@ MonoBehaviour:
   maizText: {fileID: 90599049}
   speedText: {fileID: 618039589}
   gearText: {fileID: 841496602}
-  playerController: {fileID: 97714132}
+  playerControllerSerial: {fileID: 97714136}
 --- !u!114 &618039589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49831,7 +49831,7 @@ MonoBehaviour:
   maizText: {fileID: 90599049}
   speedText: {fileID: 618039589}
   gearText: {fileID: 841496602}
-  playerController: {fileID: 97714132}
+  playerControllerSerial: {fileID: 97714136}
 --- !u!114 &841496602
 MonoBehaviour:
   m_ObjectHideFlags: 0
