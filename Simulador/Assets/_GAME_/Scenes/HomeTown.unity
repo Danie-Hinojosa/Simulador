@@ -26614,9 +26614,6 @@ MonoBehaviour:
   maizText: {fileID: 0}
   speedText: {fileID: 0}
   gearText: {fileID: 0}
-  _moveDir: {x: 0, y: 0}
-  _currentGear: 0
-  _currentSpeed: 0
   collectedCountText: {fileID: 0}
 --- !u!4 &97714133
 Transform:
